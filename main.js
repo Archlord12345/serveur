@@ -14,6 +14,29 @@ document.addEventListener('DOMContentLoaded', () => {
   const copyBtn = document.getElementById('copy-ip');
   const toast = document.getElementById('toast');
   const serverIP = 'in-02.scarycloud.store:25568';
+  const apiUrl = `https://api.mcsrvstat.us/2/${serverIP}`;
+
+  // Server Status Fetch
+  const statusDot = document.querySelector('.status-dot');
+  const statusText = document.querySelector('.status-text');
+
+  fetch(apiUrl)
+    .then(response => response.json())
+    .then(data => {
+      if (data.online) {
+        statusDot.classList.add('online');
+        statusText.textContent = `EN LIGNE - ${data.players.online} JOUEURS`;
+        statusText.style.color = '#fff';
+      } else {
+        statusDot.classList.add('offline');
+        statusText.textContent = 'HORS LIGNE';
+        statusText.style.color = '#ff4444';
+      }
+    })
+    .catch(err => {
+      console.error('Status fetch failed:', err);
+      statusText.textContent = 'STATUT INCONNU';
+    });
 
   copyBtn.addEventListener('click', () => {
     navigator.clipboard.writeText(serverIP).then(() => {
