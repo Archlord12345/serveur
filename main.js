@@ -1,66 +1,74 @@
+import './navbar.js';
+
 document.addEventListener('DOMContentLoaded', () => {
   // Enter Overlay & Audio
   const enterOverlay = document.getElementById('enter-overlay');
   const bgMusic = document.getElementById('bg-music');
 
-  bgMusic.volume = 0.5;
-
-  enterOverlay.addEventListener('click', () => {
-    enterOverlay.classList.add('hidden');
-    bgMusic.play().catch(e => console.log("Audio play failed:", e));
-  });
+  if (enterOverlay && bgMusic) {
+    bgMusic.volume = 0.5;
+    enterOverlay.addEventListener('click', () => {
+      enterOverlay.classList.add('hidden');
+      bgMusic.play().catch(e => console.log("Audio play failed:", e));
+    });
+  }
 
   // Copy IP Functionality
   const copyBtn = document.getElementById('copy-ip');
   const toast = document.getElementById('toast');
   const serverIP = 'in-02.scarycloud.store:25568';
-  const apiUrl = `https://api.mcsrvstat.us/2/${serverIP}`;
 
-  // Server Status Fetch
-  const statusDot = document.querySelector('.status-dot');
-  const statusText = document.querySelector('.status-text');
+  if (copyBtn && toast) {
+    const apiUrl = `https://api.mcsrvstat.us/2/${serverIP}`;
 
-  fetch(apiUrl)
-    .then(response => response.json())
-    .then(data => {
-      if (data.online) {
-        statusDot.classList.add('online');
-        statusText.textContent = `EN LIGNE - ${data.players.online} JOUEURS`;
-        statusText.style.color = '#fff';
-      } else {
-        statusDot.classList.add('offline');
-        statusText.textContent = 'HORS LIGNE';
-        statusText.style.color = '#ff4444';
-      }
-    })
-    .catch(err => {
-      console.error('Status fetch failed:', err);
-      statusText.textContent = 'STATUT INCONNU';
-    });
+    // Server Status Fetch
+    const statusDot = document.querySelector('.status-dot');
+    const statusText = document.querySelector('.status-text');
 
-  copyBtn.addEventListener('click', () => {
-    navigator.clipboard.writeText(serverIP).then(() => {
-      toast.classList.remove('hidden');
-      setTimeout(() => {
-        toast.classList.add('hidden');
-      }, 2000);
-    }).catch(err => {
-      console.error('Failed to copy text: ', err);
-      const textArea = document.createElement("textarea");
-      textArea.value = serverIP;
-      document.body.appendChild(textArea);
-      textArea.focus();
-      textArea.select();
-      try {
-        document.execCommand('copy');
+    if (statusDot && statusText) {
+      fetch(apiUrl)
+        .then(response => response.json())
+        .then(data => {
+          if (data.online) {
+            statusDot.classList.add('online');
+            statusText.textContent = `EN LIGNE - ${data.players.online} JOUEURS`;
+            statusText.style.color = '#fff';
+          } else {
+            statusDot.classList.add('offline');
+            statusText.textContent = 'HORS LIGNE';
+            statusText.style.color = '#ff4444';
+          }
+        })
+        .catch(err => {
+          console.error('Status fetch failed:', err);
+          statusText.textContent = 'STATUT INCONNU';
+        });
+    }
+
+    copyBtn.addEventListener('click', () => {
+      navigator.clipboard.writeText(serverIP).then(() => {
         toast.classList.remove('hidden');
-        setTimeout(() => toast.classList.add('hidden'), 2000);
-      } catch (err) {
-        console.error('Fallback: Oops, unable to copy', err);
-      }
-      document.body.removeChild(textArea);
+        setTimeout(() => {
+          toast.classList.add('hidden');
+        }, 2000);
+      }).catch(err => {
+        console.error('Failed to copy text: ', err);
+        const textArea = document.createElement("textarea");
+        textArea.value = serverIP;
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        try {
+          document.execCommand('copy');
+          toast.classList.remove('hidden');
+          setTimeout(() => toast.classList.add('hidden'), 2000);
+        } catch (err) {
+          console.error('Fallback: Oops, unable to copy', err);
+        }
+        document.body.removeChild(textArea);
+      });
     });
-  });
+  }
 
   // Scroll Reveal
   const cards = document.querySelectorAll('.card');
@@ -81,67 +89,69 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // --- NEW: Particles System (Embers) ---
   const canvas = document.getElementById('particles');
-  const ctx = canvas.getContext('2d');
-  let particles = [];
+  if (canvas) {
+    const ctx = canvas.getContext('2d');
+    let particles = [];
 
-  function resizeCanvas() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-  }
-  window.addEventListener('resize', resizeCanvas);
-  resizeCanvas();
-
-  class Particle {
-    constructor() {
-      this.reset();
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
     }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
 
-    reset() {
-      this.x = Math.random() * canvas.width;
-      this.y = Math.random() * canvas.height + canvas.height; // Start below or random
-      this.size = Math.random() * 3 + 1;
-      this.speedY = Math.random() * 2 + 0.5;
-      this.speedX = (Math.random() - 0.5) * 1;
-      this.color = `rgba(255, ${Math.floor(Math.random() * 100)}, 0, ${Math.random() * 0.5 + 0.2})`;
-      this.life = Math.random() * 100 + 50;
-    }
-
-    update() {
-      this.y -= this.speedY;
-      this.x += this.speedX;
-      this.life--;
-
-      if (this.life <= 0 || this.y < -10) {
+    class Particle {
+      constructor() {
         this.reset();
-        this.y = canvas.height + 10; // Reset to bottom
+      }
+
+      reset() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height + canvas.height; // Start below or random
+        this.size = Math.random() * 3 + 1;
+        this.speedY = Math.random() * 2 + 0.5;
+        this.speedX = (Math.random() - 0.5) * 1;
+        this.color = `rgba(255, ${Math.floor(Math.random() * 100)}, 0, ${Math.random() * 0.5 + 0.2})`;
+        this.life = Math.random() * 100 + 50;
+      }
+
+      update() {
+        this.y -= this.speedY;
+        this.x += this.speedX;
+        this.life--;
+
+        if (this.life <= 0 || this.y < -10) {
+          this.reset();
+          this.y = canvas.height + 10; // Reset to bottom
+        }
+      }
+
+      draw() {
+        ctx.fillStyle = this.color;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
       }
     }
 
-    draw() {
-      ctx.fillStyle = this.color;
-      ctx.beginPath();
-      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-      ctx.fill();
+    function initParticles() {
+      for (let i = 0; i < 100; i++) {
+        particles.push(new Particle());
+      }
     }
-  }
 
-  function initParticles() {
-    for (let i = 0; i < 100; i++) {
-      particles.push(new Particle());
+    function animateParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(p => {
+        p.update();
+        p.draw();
+      });
+      requestAnimationFrame(animateParticles);
     }
-  }
 
-  function animateParticles() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    particles.forEach(p => {
-      p.update();
-      p.draw();
-    });
-    requestAnimationFrame(animateParticles);
+    initParticles();
+    animateParticles();
   }
-
-  initParticles();
-  animateParticles();
 
   // --- NEW: Mouse Parallax ---
   const heroBg = document.querySelector('.hero-bg');

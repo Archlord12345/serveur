@@ -5,8 +5,9 @@
   --color-secondary: #8b0000;
   /* Rouge Sang */
   --color-text: #ffffff;
-  --font-display: 'Creepster', cursive;
-  --font-body: 'Roboto Mono', monospace;
+  --color-text: #ffffff;
+  --font-display: 'VT323', monospace;
+  --font-body: 'VT323', monospace;
 }
 
 * {
@@ -20,6 +21,37 @@ body {
   color: var(--color-text);
   font-family: var(--font-body);
   overflow-x: hidden;
+  font-size: 1.2rem;
+}
+
+/* Minecraft Navbar */
+.mc-navbar {
+  padding: 1rem 0;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), transparent) !important;
+}
+
+.navbar-brand {
+  font-size: 2.5rem !important;
+  color: var(--color-primary) !important;
+}
+
+.mc-link {
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  color: #aaa !important;
+  transition: color 0.3s;
+  text-shadow: 2px 2px 0 #000;
+}
+
+.mc-link:hover,
+.mc-link.active {
+  color: #fff !important;
+  text-shadow: 2px 2px 0 var(--color-primary);
+}
+
+.mc-toggler {
+  border: 2px solid #fff !important;
+  border-radius: 0 !important;
 }
 
 #particles {
@@ -221,12 +253,37 @@ h3 {
   transition: all 0.3s;
   text-transform: uppercase;
   box-shadow: 0 0 15px rgba(255, 69, 0, 0.3);
+  animation: btn-pulse 2s infinite;
+}
+
+@keyframes btn-pulse {
+  0% {
+    box-shadow: 0 0 15px rgba(255, 69, 0, 0.3);
+    transform: scale(1);
+  }
+
+  50% {
+    box-shadow: 0 0 30px rgba(255, 69, 0, 0.6);
+    transform: scale(1.02);
+  }
+
+  100% {
+    box-shadow: 0 0 15px rgba(255, 69, 0, 0.3);
+    transform: scale(1);
+  }
 }
 
 .btn-primary:hover {
   background: var(--color-primary);
   color: var(--color-bg);
-  box-shadow: 0 0 20px var(--color-primary);
+  box-shadow: 0 0 50px var(--color-primary), inset 0 0 20px rgba(0, 0, 0, 0.5);
+  animation: none;
+  transform: scale(1.05) rotate(-1deg);
+  border-color: #fff;
+}
+
+.btn-primary:active {
+  transform: scale(0.95);
 }
 
 .btn-text {
