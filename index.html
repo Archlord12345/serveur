@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ANARCHIE - Le Chaos est la seule règle</title>
+  <meta name="description" content="Rejoignez le serveur Minecraft Anarchique ultime. Pas de règles, pas de pitié.">
+  <link rel="stylesheet" href="./style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Roboto+Mono:wght@400;700&display=swap"
+    rel="stylesheet">
+</head>
+
+<body>
+  <div id="enter-overlay" class="enter-overlay">
+    <div class="enter-content">
+      <h1>ANARCHIE</h1>
+      <p>CLIQUER POUR ENTRER</p>
+    </div>
+  </div>
+  <audio id="bg-music" loop>
+    <source src="/theme.mp3" type="audio/mpeg">
+  </audio>
+  <canvas id="particles"></canvas>
+  <div id="app">
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-bg" style="background-image: url('/hero-bg.jpg');"></div>
+      <div class="overlay"></div>
+      <div class="content">
+        <h1 class="glitch" data-text="ANARCHIE">ANARCHIE</h1>
+        <p class="subtitle">Le chaos est la seule règle.</p>
+        <div class="cta-container">
+          <button id="copy-ip" class="btn-primary">
+            <span class="btn-text">COPIER L'IP</span>
+            <span class="btn-glitch">IN-02.SCARYCLOUD.STORE:25568</span>
+          </button>
+          <div id="toast" class="toast hidden">IP Copiée !</div>
+        </div>
+      </div>
+      <div class="scroll-indicator">
+        <span></span>
+      </div>
+    </section>
+
+    <!-- Rules / About Section -->
+    <section class="about">
+      <div class="container">
+        <h2 class="section-title">AUCUNE RÈGLE</h2>
+        <div class="grid">
+          <div class="card">
+            <h3>GRIEF AUTORISÉ</h3>
+            <p>Détruisez, pillez, brûlez. Le monde est à vous, si vous pouvez le garder.</p>
+          </div>
+          <div class="card">
+            <h3>PVP TOTAL</h3>
+            <p>Ne faites confiance à personne. Vos alliés d'aujourd'hui sont vos ennemis de demain.</p>
+          </div>
+          <div class="card">
+            <h3>HACKS TOLÉRÉS</h3>
+            <p>Utilisez tous les moyens nécessaires pour survivre. Seuls les forts restent.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Community Section -->
+    <section class="community">
+      <div class="community-bg" style="background-image: url('/community-bg.jpg');"></div>
+      <div class="overlay-gradient"></div>
+      <div class="content">
+        <h2 class="section-title">REJOIGNEZ LE CHAOS</h2>
+        <p>Discutez, formez des clans, déclarez des guerres.</p>
+        <a href="https://discord.gg/exemple" target="_blank" class="btn-discord">
+          REJOINDRE LE DISCORD
+        </a>
+      </div>
+    </section>
+
+    <footer>
+      <p>&copy; 2024 Serveur Anarchie. Survivrez-vous ?</p>
+    </footer>
+  </div>
+  <script type="module" src="/main.js"></script>
+</body>
+
+</html>
