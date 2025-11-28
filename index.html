@@ -3,64 +3,17 @@
 
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ANARCHIE - Le Chaos est la seule règle</title>
-  <meta name="description" content="Rejoignez le serveur Minecraft Anarchique ultime. Pas de règles, pas de pitié.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="./style.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Roboto+Mono:wght@400;700&display=swap"
-    rel="stylesheet">
 </head>
 
 <body>
-  <div id="enter-overlay" class="enter-overlay">
-    <div class="enter-content">
-      <h1>ANARCHIE</h1>
-      <p>CLIQUER POUR ENTRER</p>
-    </div>
-  </div>
-  <audio id="bg-music" loop>
-    <source src="/theme.mp3" type="audio/mpeg">
-  </audio>
-  <canvas id="particles"></canvas>
-  <div id="app">
-    <!-- Hero Section -->
-    <section class="hero">
-      <div class="hero-bg" style="background-image: url('/hero-bg.jpg');"></div>
-      <div class="overlay"></div>
-      <div class="content">
-        <h1 class="glitch" data-text="ANARCHIE">ANARCHIE</h1>
-        <p class="subtitle">Le chaos est la seule règle.</p>
-        <div class="cta-container">
-          <div id="server-status" class="server-status">
-            <span class="status-dot"></span>
-            <span class="status-text">RÉCUPÉRATION DU STATUT...</span>
-          </div>
-          <button id="copy-ip" class="btn-primary">
-            <span class="btn-text">COPIER L'IP</span>
-            <span class="btn-glitch">IN-02.SCARYCLOUD.STORE:25568</span>
-          </button>
-          <div id="toast" class="toast hidden">IP Copiée !</div>
-        </div>
-      </div>
-      <div class="scroll-indicator">
-        <span></span>
-      </div>
-    </section>
-
-    <!-- Rules & Community moved to separate pages -->
-
-    <footer>
-      <p>&copy; 2024 Serveur Anarchie. Survivrez-vous ? mais n'oubliez pas Archlord reigne en maitre :)))</p>
-    </footer>
-  </div>
-  <script type="module" src="/main.js"></script>
+  <div id="root"></div>
+  <script type="module" src="/src/main.jsx"></script>
 </body>
 
 </html>
